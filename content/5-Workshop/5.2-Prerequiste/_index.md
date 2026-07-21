@@ -1,22 +1,34 @@
 ---
-title: "Prerequisites & Cognito"
+title: "Prerequisites"
 date: 2024-01-01
 weight: 1
 chapter: false
 pre: " <b> 5.2. </b> "
 ---
 
-## Goals
+Before starting the hands-on lab, you need to prepare the following tools and accounts:
 
-Before deploying the application, you need to prepare the required AWS resources and configure the authentication service. In this section, you will create the necessary IAM roles and permissions for AWS services, then set up an Amazon Cognito User Pool for user authentication.
+## IAM ROLE
+- IAM Role for SQS that allows Lambda to send and receive messages from SQS
+![sqs](/images/5-Workshop/5.2-Prerequisite/sqs.png)
 
-These configurations provide the foundation for the backend deployment in the following sections.
+![sqs](/images/5-Workshop/5.2-Prerequisite/sqs3.png)
 
-### Why complete this section first?
+![sqs](/images/5-Workshop/5.2-Prerequisite/sqs2.png)
 
-- **AWS Permissions:** Configure the required IAM Roles and policies so that AWS services such as Lambda and Amazon SQS can interact securely.
-- **User Authentication:** Create an Amazon Cognito User Pool to manage user registration and authentication. The **User Pool ID**, **Client ID**, and **Client Secret** obtained in this section will be required when configuring the backend application.
-- **Deployment Preparation:** Completing these prerequisites ensures that all required AWS resources are available before deploying the application.
+- Add SQS policy to Lambda
+
+![sqs](/images/5-Workshop/5.2-Prerequisite/addsqspolicyforlambda.png)
+
+- IAM for Lambda
+
+![sqs](/images/5-Workshop/5.2-Prerequisite/Screenshot2026-07-21022537.png)
+
+![sqs](/images/5-Workshop/5.2-Prerequisite/Screenshot2026-07-21022934.png)
+
+![sqs](/images/5-Workshop/5.2-Prerequisite/Screenshot2026-07-21023113.png)
+
+![sqs](/images/5-Workshop/5.2-Prerequisite/Screenshot2026-07-21023131.png)
 
 ## Content
 

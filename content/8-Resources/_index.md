@@ -8,7 +8,11 @@ pre: " <b> 8. </b> "
 
 Below are the key resources used and created during the research and development of the project.
 
-### Project Source Code
+### 1. Project Link
+
+_Visit the [**Chrono Genesis TCG Game**](https://dev.d3oenyc702mfnb.amplifyapp.com/) to explore the interface and test out the gameplay features._
+
+### 2. Project Source Code
 
 [![TCG-AWS GitHub Repository](https://opengraph.githubassets.com/1/runeeyes584/TCG-AWS)](https://github.com/runeeyes584/TCG-AWS)
 
@@ -16,7 +20,7 @@ _Visit the [**GitHub Repository**](https://github.com/runeeyes584/TCG-AWS) to vi
 
 ---
 
-### Product Demo Videos
+### 3. Product Demo Videos
 
 > Please use headphones or turn on audio for the best experience!
 

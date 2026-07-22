@@ -33,8 +33,8 @@ Chúng ta sẽ sử dụng và kết hợp các dịch vụ cốt lõi của AWS
 
 1. [Tổng quan về workshop](5.1-Workshop-overview/)
 2. [Các bước chuẩn bị](5.2-Prerequiste/)
-3. [Tạo Cơ sở dữ liệu Amazon DynamoDB](5.3-S3-vpc/)
-4. [Thiết lập Authentication & API Gateway WebSocket](5.4-S3-onprem/)
-5. [Cấu hình Business Logic Compute (AWS Lambda Functions & SQS)](5.5-Policy/)
+3. [Tạo Cơ sở dữ liệu Amazon DynamoDB](5.3-DynamoDB/)
+4. [Thiết lập Authentication & API Gateway WebSocket](5.4-API/)
+5. [Cấu hình Business Logic Compute (AWS Lambda Functions & SQS)](5.5-LAMBDA-SQS/)
 6. [Deploy Frontend Web Game với AWS Amplify Hosting](5.6-Deploy/)
 7. [Dọn dẹp tài nguyên](5.7-Cleanup/)

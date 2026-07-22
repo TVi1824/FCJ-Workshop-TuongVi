@@ -31,7 +31,7 @@ Real-time bidirectional connections (WebSocket) are routed through Amazon API Ga
 
 Game data and connection information are stored in Amazon DynamoDB. Additionally, after a match ends, events are pushed to Amazon SQS for a Lambda function (Post Match Worker) to asynchronously process tasks such as updating Rank, EXP, and saving match history, ensuring high performance and ultra-low latency.  
 
-![IoT Weather Station Architecture](/images/2-Proposal/architecture.png)
+![Architecture](images/2-Proposal/arch.png)
 
 
 *AWS Services Used*  

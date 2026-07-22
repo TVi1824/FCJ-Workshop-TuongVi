@@ -10,7 +10,51 @@ Trong phần này, bạn sẽ triển khai mã nguồn, cấu hình biến môi 
 
 ---
 
-### 1. Triển khai mã nguồn cấu hình cho hàm Lambda
+### 1. Tạo các hàm Lambda
+
+Trước khi triển khai mã nguồn, cần tạo các hàm AWS Lambda sẽ được sử dụng trong hệ thống.
+
+#### Bước 1
+
+Truy cập dịch vụ **AWS Lambda**, chọn **Functions**, sau đó nhấn **Create function**.
+
+#### Bước 2
+
+Tại trang **Create function**, chọn **Author from scratch**.
+
+Cấu hình các thông tin sau:
+
+- **Function name:** Đặt tên cho Lambda theo chức năng (ví dụ: `ConnectHandler-function`).
+- **Runtime:** `Node.js 24.x`.
+- Mở phần **Additional settings**.
+- Bật **Custom execution role**.
+- Chọn IAM Role đã được tạo ở bước thiết lập trước (ví dụ: **Chrono-Lambda-Execution-Role**).
+
+Sau khi hoàn tất, nhấn **Create function**.
+
+![Tạo Lambda Function](/images/5-Workshop/5.5-Policy/set_up_aws_lambda1.png)
+
+#### Bước 3
+
+Thực hiện tương tự để tạo các Lambda còn lại:
+
+- **DisconnectHandler-function**
+- **StartMatch-function**
+- **HandleTimeout-function**
+- **ProcessGameEngine-function**
+- **SaveDeck-function**
+- **CancelMatch-function**
+- **EndMatch-function**
+- **PostMatchWorker-function**
+- **chrono-http-backend**
+
+Sau khi hoàn tất, danh sách Lambda sẽ hiển thị tương tự như hình dưới đây.
+
+![Danh sách Lambda sau khi tạo](/images/5-Workshop/5.5-Policy/set_up_aws_lambda2.png)
+
+---
+
+### 2. Triển khai mã nguồn cấu hình cho hàm Lambda
 
 1. Trong giao diện chi tiết của hàm Lambda **ConnectHandler-function**, chuyển đến tab **Code**. Tìm nút **Upload from** và chọn tùy chọn **.zip file**.
    ![Upload file zip cho hàm Lambda](/images/5-Workshop/5.5-Policy/10.png)
@@ -48,7 +92,7 @@ Trong phần này, bạn sẽ triển khai mã nguồn, cấu hình biến môi 
 
 ---
 
-### 2. Cấu hình Lambda PostMatchWorker
+### 3. Cấu hình Lambda PostMatchWorker
 
 Bước 1: Trong giao diện chi tiết của hàm **Lambda PostMatchWorker-function**, chuyển sang tab **Configuration**, chọn mục **Environment variables** và click **Edit** để cấu hình các biến môi trường kết nối cơ sở dữ liệu (như `DB_ACCESS_KEY_ID`, `DB_REGION`, `DB_SECRET_ACCESS_KEY`)
 ![Cấu hình Environment Variables cho Lambda](/images/5-Workshop/5.5-Policy/postMatch.png)
@@ -61,7 +105,7 @@ Bước 3: Click nút **Test** màu cam để chạy thử hàm. Sau đó, mở 
 
 ---
 
-### 3. Cấu hình Lambda ProcessGameEngine
+### 4. Cấu hình Lambda ProcessGameEngine
 
 Bước 1: Trong giao diện chi tiết của hàm **Lambda ProcessGameEngine-function**, tại tab **Code**, tiến hành cập nhật mã nguồn bằng cách chọn upload từ tệp **.zip**. Khi quá trình tải lên hoàn tất, hệ thống sẽ hiển thị thông báo màu xanh **"Successfully updated the function ProcessGameEngine-function"** để xác nhận.
 ![Cấu hình Environment Variables cho Lambda](/images/5-Workshop/5.5-Policy/842.png)
@@ -69,27 +113,40 @@ Bước 1: Trong giao diện chi tiết của hàm **Lambda ProcessGameEngine-fu
 Bước 2: Chuyển sang cấu hình kiểm thử (thường ở tab **Test**), tạo một sự kiện mới và đặt tên tại ô **Event name** là **Test-EndTurn**. Trong khung **Event JSON**, dán đoạn mã giả lập một request gửi từ API Gateway (chứa các thông tin như connectionId và body chứa hành động END_TURN của người chơi). Sau đó nhấn **Save** để chuẩn bị cho quá trình chạy thử.
 ![Cấu hình Environment Variables cho Lambda](/images/5-Workshop/5.5-Policy/708.png)
 
-### 4. Cấu hình các Lambda còn lại
+### 5. Cấu hình các Lambda còn lại
 
 Tiếp tục triển khai và cấu hình cho các hàm Lambda còn lại gồm:
 
 - **SaveDeck-function**
 - **StartMatch-function**
 - **HandleTimeout-function**
+- **DisconnectHandler**
+- **CancelMatch**
+- **EndMatch**
+- **Chrono-http**
 
 Sau khi tải mã nguồn lên thành công, tiến hành cấu hình các biến môi trường cho từng Lambda.
 
 #### Bước 1: Cập nhật Environment Variables
 
-Lần lượt mở các hàm **ProcessGameEngine-function**, **StartMatch-function** và **HandleTimeout-function**.
+Lần lượt mở các hàm **ProcessGameEngine-function**, **StartMatch-function**, **HandleTimeout-function**, **CancelMatch-function** và **SaveDeck-function**
 
 Chuyển sang:
 
 **Configuration** → **Environment variables** → **Edit**
 
+- Biến môi trường cho chrono-http-backend
+  ![chrono-http-backend](/images/5-Workshop/5.5-Policy/chrono_http_be.png)
+
+- Biến môi trường cho ConnectHandler
+  ![ConnectHandler](/images/5-Workshop/5.5-Policy/connect_handler_funtion.png)
+
+- Biến môi trường cho End Match
+  ![End Match ](/images/5-Workshop/5.5-Policy/endmatch_funtion.png)
+
 Sau đó cập nhật các biến môi trường theo yêu cầu của dự án.
 
-![Cập nhật Environment Variables](/images/5-Workshop/5.5-Policy/enviroment_update1.png)
+![Cập nhật Environment Variables](/images/5-Workshop/5.5-Policy/enviroment_variable5.png)
 
 ![Cập nhật Environment Variables](/images/5-Workshop/5.5-Policy/enviroment_update2.png)
 
@@ -107,7 +164,7 @@ Thay đổi cấu hình của hàm Lambda theo hình minh họa dưới đây.
 
 ---
 
-### 5. Tạo hàng đợi SQS chrono-turn-timeouts
+### 6. Tạo hàng đợi SQS chrono-turn-timeouts
 
 Để xử lý timeout bất đồng bộ, hàm **ProcessGameEngine-function** sẽ gửi các sự kiện timeout đến một hàng đợi Amazon SQS. Vì vậy cần tạo một queue mới dành riêng cho chức năng này.
 
@@ -136,7 +193,7 @@ Sau khi tạo thành công, kiểm tra lại thông tin của Queue để đảm
 
 ---
 
-### 6. Thêm Trigger SQS cho Lambda HandleTimeout
+### 7. Thêm Trigger SQS cho Lambda HandleTimeout
 
 Sau khi Queue được tạo, tiến hành cấu hình để **HandleTimeout-function** tự động nhận các message từ **chrono-turn-timeouts**.
 
@@ -169,7 +226,7 @@ Khi trạng thái chuyển sang **Enabled**, điều đó có nghĩa là **Handl
 
 ---
 
-### 7. Tạo hàng đợi Match-Result-queue
+### 8. Tạo hàng đợi Match-Result-queue
 
 Sau khi hoàn tất cấu hình xử lý timeout, tiếp tục tạo một hàng đợi Amazon SQS để xử lý các công việc sau khi trận đấu kết thúc (**PostMatchWorker**).
 
@@ -206,7 +263,7 @@ Cuộn xuống cuối trang, giữ nguyên các thiết lập mặc định cho 
 
 ---
 
-### 8. Thêm Trigger SQS cho Lambda PostMatchWorker
+### 9. Thêm Trigger SQS cho Lambda PostMatchWorker
 
 Sau khi tạo thành công **Match-Result-queue**, tiến hành cấu hình để **PostMatchWorker-function** tự động nhận các message được gửi từ **EndMatch-function**.
 

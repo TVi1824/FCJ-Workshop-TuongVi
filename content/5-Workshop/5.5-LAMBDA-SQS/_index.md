@@ -10,7 +10,51 @@ In this section, you will deploy the source code, configure environment variable
 
 ---
 
-### 1. Deploy the Lambda Function Source Code
+### 1. Create Lambda Functions
+
+Before deploying the source code, you need to create the AWS Lambda functions that will be used throughout the system.
+
+#### Step 1
+
+Navigate to the **AWS Lambda** service, select **Functions**, and then click **Create function**.
+
+#### Step 2
+
+On the **Create function** page, choose **Author from scratch**.
+
+Configure the following settings:
+
+- **Function name:** Enter a name based on the function's purpose (for example, `ConnectHandler-function`).
+- **Runtime:** `Node.js 24.x`.
+- Expand **Additional settings**.
+- Enable **Custom execution role**.
+- Select the IAM role that was created during the previous setup step (for example, **Chrono-Lambda-Execution-Role**).
+
+After completing the configuration, click **Create function**.
+
+![Create Lambda Function](/images/5-Workshop/5.5-Policy/set_up_aws_lambda1.png)
+
+#### Step 3
+
+Repeat the same process to create the remaining Lambda functions:
+
+- **DisconnectHandler-function**
+- **StartMatch-function**
+- **HandleTimeout-function**
+- **ProcessGameEngine-function**
+- **SaveDeck-function**
+- **CancelMatch-function**
+- **EndMatch-function**
+- **PostMatchWorker-function**
+- **chrono-http-backend**
+
+After all functions have been created, the Lambda function list should look similar to the image below.
+
+![Lambda Functions List](/images/5-Workshop/5.5-Policy/set_up_aws_lambda2.png)
+
+---
+
+### 2. Deploy the Lambda Function Source Code
 
 1. Open the **ConnectHandler-function** in the AWS Lambda console and navigate to the **Code** tab. Click **Upload from** and choose **.zip file**.
 
@@ -52,7 +96,7 @@ In this section, you will deploy the source code, configure environment variable
 
 ---
 
-### 2. Configure the PostMatchWorker Lambda Function
+### 3. Configure the PostMatchWorker Lambda Function
 
 **Step 1**
 
@@ -74,7 +118,7 @@ Click the orange **Test** button to execute the function. Expand **Execution res
 
 ---
 
-### 3. Configure the ProcessGameEngine Lambda Function
+### 4. Configure the ProcessGameEngine Lambda Function
 
 **Step 1**
 
@@ -90,13 +134,17 @@ Go to the **Test** tab, create a new test event, and enter **Test-EndTurn** as t
 
 ---
 
-### 4. Configure the Remaining Lambda Functions
+### 5. Configure the Remaining Lambda Functions
 
 Continue deploying and configuring the remaining Lambda functions:
 
 - **SaveDeck-function**
 - **StartMatch-function**
 - **HandleTimeout-function**
+- **DisconnectHandler**
+- **CancelMatch**
+- **EndMatch**
+- **Chrono-http**
 
 After uploading the source code for each function, configure their required environment variables.
 
@@ -107,14 +155,25 @@ Open the following Lambda functions one by one:
 - **ProcessGameEngine-function**
 - **StartMatch-function**
 - **HandleTimeout-function**
+- **CancelMatch-function**
+- **SaveDeck-function**
 
 Navigate to:
 
 **Configuration** → **Environment variables** → **Edit**
 
+- Environment variables for chrono-http-backend
+  ![chrono-http-backend](/images/5-Workshop/5.5-Policy/chrono_http_be.png)
+
+- Environment variables for ConnectHandler
+  ![ConnectHandler](/images/5-Workshop/5.5-Policy/connect_handler_funtion.png)
+
+- Environment variables for End Match
+  ![End Match ](/images/5-Workshop/5.5-Policy/endmatch_funtion.png)
+
 Then update the required environment variables for each function.
 
-![Update Environment Variables](/images/5-Workshop/5.5-Policy/enviroment_update1.png)
+![Update Environment Variables](/images/5-Workshop/5.5-Policy/enviroment_variable5.png)
 
 ![Update Environment Variables](/images/5-Workshop/5.5-Policy/enviroment_update2.png)
 
@@ -132,7 +191,7 @@ Update the Lambda settings as shown in the following screenshots.
 
 ---
 
-### 5. Create the `chrono-turn-timeouts` SQS Queue
+### 6. Create the `chrono-turn-timeouts` SQS Queue
 
 To support asynchronous timeout processing, **ProcessGameEngine-function** sends timeout events to an Amazon SQS queue. Therefore, create a dedicated queue for this purpose.
 
@@ -161,7 +220,7 @@ After the queue is created successfully, verify that the **chrono-turn-timeouts*
 
 ---
 
-### 6. Add an SQS Trigger to HandleTimeout Lambda
+### 7. Add an SQS Trigger to HandleTimeout Lambda
 
 After creating the queue, configure **HandleTimeout-function** to automatically receive messages from **chrono-turn-timeouts**.
 
@@ -194,7 +253,7 @@ When the trigger status changes to **Enabled**, **HandleTimeout-function** will 
 
 ---
 
-### 7. Create the `Match-Result-queue`
+### 8. Create the `Match-Result-queue`
 
 After configuring timeout processing, create another Amazon SQS queue for post-match processing performed by **PostMatchWorker**.
 
@@ -231,7 +290,7 @@ Scroll to the bottom of the page, keep the default settings for **Dead-letter qu
 
 ---
 
-### 8. Add an SQS Trigger to PostMatchWorker Lambda
+### 9. Add an SQS Trigger to PostMatchWorker Lambda
 
 Once **Match-Result-queue** has been created, configure **PostMatchWorker-function** to automatically process messages sent by **EndMatch-function**.
 

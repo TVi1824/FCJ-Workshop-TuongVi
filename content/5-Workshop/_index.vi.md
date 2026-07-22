@@ -9,7 +9,12 @@ pre: " <b> 5. </b> "
 
 # XÂY DỰNG WEB GAME TRÊN AWS VỚI SERVERLESS ARCHITECTURE
 
+**Link dự án:** [Chrono Genesis Game](https://dev.d3oenyc702mfnb.amplifyapp.com/)
+**Link Demo:** []
+
 #### Tổng quan
+
+[Tổng quan về workshop](5.1-Workshop-overview/)
 
 **AWS Serverless Architecture** cung cấp khả năng tự động mở rộng linh hoạt và tối ưu chi phí cho các ứng dụng có lưu lượng truy cập thay đổi liên tục, đặc biệt là các trò chơi trực tuyến thời gian thực.
 

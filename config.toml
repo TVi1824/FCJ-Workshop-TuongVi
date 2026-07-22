@@ -1,5 +1,5 @@
 baseURL = "https://tvi1824.github.io/fcj-workshop/"
-relativeURLs = false
+relativeURLs = true
 canonifyURLs = false
 defaultContentLanguage = "en"
 

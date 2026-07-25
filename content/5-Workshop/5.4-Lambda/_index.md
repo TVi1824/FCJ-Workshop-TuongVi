@@ -11,6 +11,57 @@ In this section, you will deploy the source code, configure environment variable
 ---
 
 ## I. Overview
+
+Before proceeding with detailed configurations on the AWS Console, below is the standard 5-step process for developing, bundling, and deploying **TypeScript/Node.js** source code to AWS Lambda:
+
+### 1. Initialization & Environment Setup
+Set up the project and install core dependencies, including `esbuild` (the bundler/compiler) and the AWS SDK:
+
+```bash
+npm init -y
+npm install @aws-sdk/client-dynamodb @aws-sdk/client-apigatewaymanagementapi
+npm install --save-dev typescript @types/node esbuild
+```
+
+### 2. Source Code Structure Organization
+Apply a modular directory structure, clearly separating Lambda functions (handlers) and shared utility code (utils) to optimize maintenance:
+
+```plaintext
+📦 lambda-backend
+ ┣ 📂 src
+ ┃ ┣ 📂 connectHandler/     ┗ 📜 index.ts   # Main logic handler
+ ┃ ┣ 📂 processGameEngine/  ┗ 📜 index.ts
+ ┃ ┗ 📂 utils/              ┗ 📜 dynamo.ts  # Shared module (e.g., DB connection)
+ ┣ 📜 package.json
+ ┗ 📜 tsconfig.json
+```
+
+### 3. Compilation & Bundling (esbuild)
+Use `esbuild` to transpile TypeScript to JavaScript, while also bundling and minifying everything into a single `index.js` file. This step helps reduce file size and optimize Cold Start time:
+
+```bash
+npx esbuild src/connectHandler/index.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/connectHandler/index.js
+```
+
+### 4. Source Code Packaging (Zip)
+Compress the compiled `.js` file into a `.zip` format according to the execution standards of AWS Lambda:
+
+```bash
+cd dist/connectHandler
+zip -r connectHandler.zip index.js
+```
+
+### 5. Source Code Deployment
+Deploy the `.zip` build to AWS Lambda using one of the following two methods:
+
+- **Via AWS Console**: On the Lambda function configuration interface, select the **Code** tab **> Upload from > .zip file**.
+- **Via AWS CLI** (Recommended for CI/CD): Run the command to automatically update the source code:
+
+```bash
+aws lambda update-function-code --function-name Chrono-ConnectHandler --zip-file fileb://connectHandler.zip
+```
+
+---
 ### Initialize a new Lambda function
 Navigate to the AWS Lambda service console on the AWS Management Console. Click the **Create function** button to start creating a new Lambda function.
 

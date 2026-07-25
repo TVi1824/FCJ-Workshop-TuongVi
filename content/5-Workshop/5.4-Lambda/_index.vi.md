@@ -11,6 +11,57 @@ Trong phần này, bạn sẽ triển khai mã nguồn, cấu hình biến môi 
 ---
 
 ## I. Tổng quan
+
+Trước khi tiến hành cấu hình chi tiết trên AWS Console, dưới đây là quy trình chuẩn 5 bước để phát triển, đóng gói và triển khai mã nguồn **TypeScript/Node.js** lên AWS Lambda:
+
+### 1. Khởi tạo & Cài đặt môi trường
+Thiết lập dự án và cài đặt các dependencies cốt lõi, bao gồm `esbuild` (trình biên dịch) và AWS SDK:
+
+```bash
+npm init -y
+npm install @aws-sdk/client-dynamodb @aws-sdk/client-apigatewaymanagementapi
+npm install --save-dev typescript @types/node esbuild
+```
+
+### 2. Tổ chức cấu trúc mã nguồn
+Áp dụng cấu trúc thư mục dạng module, phân tách rõ ràng giữa các hàm Lambda (handlers) và mã nguồn tiện ích dùng chung (utils) nhằm tối ưu hóa việc bảo trì:
+
+```plaintext
+📦 lambda-backend
+ ┣ 📂 src
+ ┃ ┣ 📂 connectHandler/     ┗ 📜 index.ts   # Handler xử lý logic chính
+ ┃ ┣ 📂 processGameEngine/  ┗ 📜 index.ts
+ ┃ ┗ 📂 utils/              ┗ 📜 dynamo.ts  # Module dùng chung (VD: DB connection)
+ ┣ 📜 package.json
+ ┗ 📜 tsconfig.json
+```
+
+### 3. Biên dịch & Đóng gói (esbuild)
+Sử dụng `esbuild` để biên dịch (transpile) TypeScript sang JavaScript, đồng thời gom nhóm (bundle) và thu gọn (minify) thành một file `index.js` duy nhất. Bước này giúp giảm dung lượng tệp và tối ưu thời gian khởi động (Cold Start):
+
+```bash
+npx esbuild src/connectHandler/index.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/connectHandler/index.js
+```
+
+### 4. Đóng gói mã nguồn (Zip)
+Nén file `.js` vừa được biên dịch thành định dạng `.zip` theo đúng tiêu chuẩn thực thi của AWS Lambda:
+
+```bash
+cd dist/connectHandler
+zip -r connectHandler.zip index.js
+```
+
+### 5. Triển khai mã nguồn (Deploy)
+Tiến hành đưa bản build `.zip` lên AWS Lambda theo 1 trong 2 phương pháp:
+
+- **Qua AWS Console**: Tại giao diện cấu hình hàm Lambda, chọn tab **Code > Upload from > .zip file**.
+- **Qua AWS CLI** (Khuyên dùng cho CI/CD): Chạy lệnh tự động cập nhật mã nguồn:
+
+```bash
+aws lambda update-function-code --function-name Chrono-ConnectHandler --zip-file fileb://connectHandler.zip
+```
+
+---
 ### Khởi tạo hàm Lambda mới
 Truy cập vào giao diện quản lý của dịch vụ AWS Lambda trên AWS Management Console. Nhấn nút **Create function** để bắt đầu tạo mới một hàm Lambda.
 

@@ -10,7 +10,7 @@ Trong phần này, bạn sẽ triển khai mã nguồn, cấu hình biến môi 
 
 ---
 
-## I. TỔNG QUAN
+## I. Tổng quan
 ### Khởi tạo hàm Lambda mới
 Truy cập vào giao diện quản lý của dịch vụ AWS Lambda trên AWS Management Console. Nhấn nút **Create function** để bắt đầu tạo mới một hàm Lambda.
 
@@ -101,7 +101,7 @@ Nếu màn hình xuất hiện trạng thái **succeeded** (ví dụ với `stat
 ![Kiểm tra Trigger WebSocket](/images/5-Workshop/overrall-lambda/9.%20kiem%20tra%20Trigger%2C%20dam%20bao%20cac%20lambda%20cho%20websocket%20deu%20trigger%20vao%20api%20websocket%20gateway%20qua%20route.png)
 
 ---
-## II. CẤU HÌNH LAMBDA FUNCTION
+## II. Cấu hình Lambda Function
 
 ### 1. Cấu hình các hàm Lambda HTTP API
 

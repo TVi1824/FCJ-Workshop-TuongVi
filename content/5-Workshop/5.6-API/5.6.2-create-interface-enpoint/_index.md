@@ -6,13 +6,13 @@ chapter: false
 pre: " <b> 5.6.2 </b> "
 ---
 
-#### Overview
+## Overview
 
 In this section, you will configure **Amazon API Gateway** for your application. The API Gateway will serve as the entry point for client requests and forward them to AWS Lambda functions. You will create the API, configure routes, integrate Lambda functions, configure CORS, create deployment stages, and deploy the API.
 
 ---
 
-## Step 1. Configure the Socket API Gateway
+### Step 1. Configure the Socket API Gateway
 
 1. Open the **Amazon API Gateway** console.
 2. Choose **HTTP API**.
@@ -25,7 +25,7 @@ HTTP APIs are well suited for serverless applications because they provide low l
 
 ---
 
-## Step 2. Create Routes
+### Step 2. Create Routes
 
 Routes define how the API handles incoming client requests.
 
@@ -38,7 +38,7 @@ Each route represents an endpoint that clients can invoke through API Gateway.
 
 ---
 
-## Step 3. Integrate AWS Lambda
+### Step 3. Integrate AWS Lambda
 
 After creating the routes, connect each route to an AWS Lambda function.
 
@@ -56,7 +56,7 @@ Whenever a client sends a request to the route, API Gateway automatically invoke
 
 ---
 
-## Step 4. Create a Stage
+### Step 4. Create a Stage
 
 A stage represents a deployed version of your API.
 
@@ -70,7 +70,7 @@ Using stages allows you to manage multiple environments while using the same API
 
 ---
 
-## Step 5. Review the Configuration
+### Step 5. Review the Configuration
 
 Before creating the API, review all configuration settings, including the routes, Lambda integrations, and deployment stage.
 
@@ -82,7 +82,7 @@ If everything is correct, choose **Create**.
 
 ---
 
-## Step 6. Verify the Routes
+### Step 6. Verify the Routes
 
 After the API has been created successfully, review the configured routes.
 
@@ -92,7 +92,7 @@ Ensure that each route is associated with the correct Lambda function.
 
 ---
 
-## Step 7. Deploy the API
+### Step 7. Deploy the API
 
 Choose **Deploy** to publish the API.
 
@@ -102,7 +102,7 @@ Once deployed, API Gateway generates an **Invoke URL** that clients can use to s
 
 ---
 
-## Step 8. Deployment Completed
+### Step 8. Deployment Completed
 
 Once the deployment is complete, the API is ready for use.
 
@@ -112,7 +112,7 @@ You can test the API using **Postman**, **curl**, or your web application.
 
 ---
 
-## Step 9. Configure the HTTP API Gateway
+### Step 9. Configure the HTTP API Gateway
 
 1. Navigate to **API Gateway → HTTP API**.
 2. Configure the API as shown in the figure, then choose **Create**.
@@ -127,7 +127,7 @@ This step ensures that client requests are forwarded to the appropriate AWS Lamb
 
 ---
 
-## Step 10. Verify the Lambda Integration
+### Step 10. Verify the Lambda Integration
 
 Next, open the **Integrations** section to review the connection between Amazon API Gateway and AWS Lambda.
 
@@ -143,7 +143,7 @@ Verifying these settings ensures that API Gateway can successfully invoke the La
 
 ---
 
-## Step 11. Configure CORS
+### Step 11. Configure CORS
 
 If your frontend application accesses the API from a different domain, configure **Cross-Origin Resource Sharing (CORS)**.
 
@@ -160,7 +160,7 @@ Enabling CORS allows browsers to securely send requests from the frontend applic
 
 ---
 
-## Step 12. Verify the Deployment Stage
+### Step 12. Verify the Deployment Stage
 
 Finally, open the **Stages** section to verify that the API has been deployed successfully.
 

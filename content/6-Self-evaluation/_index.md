@@ -17,18 +17,18 @@ To objectively reflect on my internship process, I would like to self-evaluate b
 
 | No. | Criteria                            | Description                                                                                            | Good | Fair | Average |
 | --- | ----------------------------------- | ------------------------------------------------------------------------------------------------------ | ---- | ---- | ------- |
-| 1   | **Professional Knowledge & Skills** | Industry understanding, applying knowledge in practice, tool proficiency, work quality                  | ✅   | ☐   | ☐       |
+| 1   | **Professional Knowledge & Skills** | Industry understanding, applying knowledge in practice, tool proficiency, work quality                  | ☐   | ✅   | ☐       |
 | 2   | **Learning Ability**                | Absorbing new knowledge, learning quickly                                                               | ☐   | ✅   | ☐       |
-| 3   | **Initiative**                      | Self-studying, taking on tasks without waiting for direction                                             | ✅   | ☐   | ☐       |
-| 4   | **Sense of Responsibility**         | Completing work on time, ensuring quality                                                               | ✅   | ☐   | ☐       |
+| 3   | **Initiative**                      | Self-studying, taking on tasks without waiting for direction                                             | ☐   | ✅   | ☐       |
+| 4   | **Sense of Responsibility**         | Completing work on time, ensuring quality                                                               | ☐   | ✅   | ☐       |
 | 5   | **Discipline**                      | Adhering to schedules, rules, and work procedures                                                       | ✅   | ☐   | ☐       |
 | 6   | **Desire for Improvement**          | Willingness to receive feedback and improve oneself                                                     | ✅   | ☐   | ☐       |
 | 7   | **Communication**                   | Presenting ideas and reporting work clearly                                                             | ☐   | ✅   | ☐       |
 | 8   | **Teamwork**                        | Working effectively with colleagues, participating in the team                                          | ✅   | ☐   | ☐       |
 | 9   | **Professional Conduct**            | Respecting colleagues, partners, and the work environment                                               | ✅   | ☐   | ☐       |
 | 10  | **Problem-Solving Thinking**        | Identifying problems, proposing solutions, creativity                                                   | ☐   | ✅   | ☐       |
-| 11  | **Contribution to the project/organization** | Work effectiveness, improvement initiatives, recognition from the team                          | ✅   | ☐   | ☐       |
-| 12  | **Overall**                         | General assessment of the entire internship process                                                     | ✅   | ☐   | ☐       |
+| 11  | **Contribution to the project/organization** | Work effectiveness, improvement initiatives, recognition from the team                          | ☐   | ✅   |   ☐    |
+| 12  | **Overall**                         | General assessment of the entire internship process                                                     | ☐   | ✅   |   ☐    |
 
 ### Areas for Improvement
 

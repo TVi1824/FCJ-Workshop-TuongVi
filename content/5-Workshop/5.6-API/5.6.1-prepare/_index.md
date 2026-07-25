@@ -6,13 +6,13 @@ chapter: false
 pre: "<b> 5.6.1 </b>"
 ---
 
-#### Amazon API Gateway
+## Amazon API Gateway
 
 - **Amazon API Gateway** is a fully managed service that enables developers to create, publish, maintain, monitor, and secure APIs at any scale.
 - It acts as the entry point for applications, allowing clients to communicate with backend services such as **AWS Lambda**, **Amazon EC2**, or other HTTP endpoints.
 - API Gateway supports authentication, authorization, traffic management, monitoring, and API versioning, making it an ideal choice for building serverless applications.
 
-#### Workshop Overview
+## Workshop Overview
 
 In this workshop, you will create an **HTTP API** using Amazon API Gateway.
 

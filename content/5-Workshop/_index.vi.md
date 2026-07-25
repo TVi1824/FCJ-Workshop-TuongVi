@@ -9,7 +9,7 @@ pre: " <b> 5. </b> "
 
 # XÂY DỰNG WEB GAME TRÊN AWS VỚI SERVERLESS ARCHITECTURE
 
-#### Tổng quan
+## Tổng quan
 
 [Tổng quan về workshop](5.1-Workshop-overview/)
 
@@ -27,7 +27,7 @@ Chúng ta sẽ sử dụng và kết hợp các dịch vụ cốt lõi của AWS
 
 + **AWS Amplify Hosting** Phân phối toàn cầu giao diện Web (React/TypeScript) và tự động hóa quy trình CI/CD.
 
-#### Nội dung
+## Nội dung
 
 1. [Tổng quan về workshop](5.1-Workshop-overview/)
 2. [Các bước chuẩn bị](5.2-Prerequiste/)

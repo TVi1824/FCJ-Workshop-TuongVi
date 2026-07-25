@@ -6,13 +6,13 @@ chapter: false
 pre: " <b> 5.6.2 </b> "
 ---
 
-#### Tổng quan
+## Tổng quan
 
 Trong phần này, bạn sẽ tạo một **HTTP API** bằng **Amazon API Gateway**. API sẽ đóng vai trò là điểm tiếp nhận các yêu cầu từ phía client và chuyển tiếp chúng đến các hàm AWS Lambda. Bạn sẽ lần lượt cấu hình API, tạo Route, tích hợp Lambda, tạo Stage và triển khai API.
 
 ---
 
-## Bước 1. Cấu hình Socket API Gateway
+### Bước 1. Cấu hình Socket API Gateway
 
 1. Truy cập **Amazon API Gateway**.
 2. Chọn mục **HTTP API**
@@ -25,7 +25,7 @@ HTTP API là lựa chọn phù hợp cho các ứng dụng serverless nhờ chi 
 
 ---
 
-## Bước 2. Tạo Route
+### Bước 2. Tạo Route
 
 Route xác định cách API xử lý các yêu cầu từ phía người dùng.
 
@@ -38,7 +38,7 @@ Mỗi Route sẽ đại diện cho một Endpoint mà client có thể truy cậ
 
 ---
 
-## Bước 3. Tích hợp AWS Lambda
+### Bước 3. Tích hợp AWS Lambda
 
 Sau khi tạo Route, tiến hành kết nối Route với AWS Lambda.
 
@@ -56,7 +56,7 @@ Khi client gửi request đến Route, API Gateway sẽ tự động gọi Lambd
 
 ---
 
-## Bước 4. Tạo Stage
+### Bước 4. Tạo Stage
 
 Stage đại diện cho một phiên bản đã được triển khai của API.
 
@@ -70,7 +70,7 @@ Việc sử dụng Stage giúp quản lý nhiều môi trường khác nhau trê
 
 ---
 
-## Bước 5. Kiểm tra cấu hình
+### Bước 5. Kiểm tra cấu hình
 
 Trước khi tạo API, hãy kiểm tra lại toàn bộ cấu hình, bao gồm Route, Lambda Integration và Stage.
 
@@ -82,7 +82,7 @@ Nếu mọi thông tin đều chính xác, chọn **Create**.
 
 ---
 
-## Bước 6. Kiểm tra Route
+### Bước 6. Kiểm tra Route
 
 Sau khi API được tạo thành công, kiểm tra danh sách các Route đã cấu hình.
 
@@ -92,7 +92,7 @@ Sau khi API được tạo thành công, kiểm tra danh sách các Route đã c
 
 ---
 
-## Bước 7. Triển khai API
+### Bước 7. Triển khai API
 
 Chọn **Deploy** để xuất bản API.
 
@@ -102,7 +102,7 @@ Sau khi triển khai, API Gateway sẽ cung cấp một **Invoke URL** để cá
 
 ---
 
-## Bước 8. Hoàn tất triển khai
+### Bước 8. Hoàn tất triển khai
 
 Khi quá trình triển khai hoàn tất, API đã sẵn sàng để sử dụng.
 
@@ -112,7 +112,7 @@ Bạn có thể kiểm tra hoạt động của API bằng **Postman**, **curl**
 
 ---
 
-## Bước 9. Thiết lập HTTP API Gateway
+### Bước 9. Thiết lập HTTP API Gateway
 
 1. Truy cập API Gateway -> HTTP API
 2. Cấu hình như trong hình -> Bấm Create
@@ -127,7 +127,7 @@ Bước này giúp đảm bảo các yêu cầu từ client sẽ được chuy�
 
 ---
 
-## Bước 10. Kiểm tra cấu hình Lambda Integration
+### Bước 10. Kiểm tra cấu hình Lambda Integration
 
 Tiếp theo, chuyển sang mục **Integrations** để xem chi tiết cấu hình kết nối giữa Amazon API Gateway và AWS Lambda.
 
@@ -143,7 +143,7 @@ Việc kiểm tra các thiết lập này giúp đảm bảo API Gateway có th�
 
 ---
 
-## Bước 11. Cấu hình CORS
+### Bước 11. Cấu hình CORS
 
 Nếu ứng dụng Frontend truy cập API từ một tên miền khác, bạn cần cấu hình **Cross-Origin Resource Sharing (CORS)**.
 
@@ -160,7 +160,7 @@ Việc bật CORS cho phép trình duyệt gửi yêu cầu từ ứng dụng Fr
 
 ---
 
-## Bước 12. Kiểm tra Stage đã triển khai
+### Bước 12. Kiểm tra Stage đã triển khai
 
 Cuối cùng, mở mục **Stages** để xác nhận API đã được triển khai thành công.
 

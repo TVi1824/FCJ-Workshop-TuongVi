@@ -9,7 +9,7 @@ pre: " <b> 5. </b> "
 
 # BUILDING A WEB GAME ON AWS WITH SERVERLESS ARCHITECTURE
 
-#### Overview
+## Overview
 
 **AWS Serverless Architecture** provides flexible auto-scaling and cost optimization for applications with continuously fluctuating traffic — especially real-time online games.
 
@@ -25,7 +25,7 @@ We will leverage and combine the following core AWS services to build a complete
 
 + **AWS Amplify Hosting:** Globally distributes the Web frontend (React/TypeScript) and automates the CI/CD pipeline.
 
-#### Contents
+## Contents
 
 1. [Project Overview & Architecture](5.1-Workshop-overview/)
 2. [Prerequisites](5.2-Prerequiste/)

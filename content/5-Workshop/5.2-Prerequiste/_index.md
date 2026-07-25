@@ -1,36 +1,24 @@
 ---
-title: "Prerequisites"
+title: "Preparation Steps & Amazon Cognito"
 date: 2024-01-01
 weight: 2
 chapter: false
 pre: " <b> 5.2. </b> "
 ---
 
-Before starting the hands-on lab, you need to prepare the following tools and accounts:
+## Objectives
 
-## IAM ROLE
-- IAM Role for SQS that allows Lambda to send and receive messages from SQS
-![sqs](/images/5-Workshop/5.2-Prerequisite/sqs.png)
+Before deploying the system, you need to prepare the necessary AWS resources and configure the user authentication service. In this section, you will set up the required IAM Roles and access permissions for AWS services, and create an **Amazon Cognito User Pool** to manage user registration and login functionalities.
 
-![sqs](/images/5-Workshop/5.2-Prerequisite/sqs3.png)
+These configurations are the foundation for deploying the backend and frontend in the next steps.
 
-![sqs](/images/5-Workshop/5.2-Prerequisite/sqs2.png)
+### Why is it necessary to complete this section first?
 
-- Add SQS policy to Lambda
+- **AWS Permissions:** Set up the required IAM Roles and Policies so that services like AWS Lambda and Amazon SQS can communicate with each other securely.
+- **User Authentication:** Create an **Amazon Cognito User Pool** to manage users. Information such as **User Pool ID**, **Client ID**, and **Client Secret** will be used when configuring the application's backend.
+- **Deployment Preparation:** Completing the preparation steps helps ensure all AWS resources are ready before starting the system deployment.
 
-![sqs](/images/5-Workshop/5.2-Prerequisite/addsqspolicyforlambda.png)
-
-- IAM for Lambda
-
-![sqs](/images/5-Workshop/5.2-Prerequisite/Screenshot2026-07-21022537.png)
-
-![sqs](/images/5-Workshop/5.2-Prerequisite/Screenshot2026-07-21022934.png)
-
-![sqs](/images/5-Workshop/5.2-Prerequisite/Screenshot2026-07-21023113.png)
-
-![sqs](/images/5-Workshop/5.2-Prerequisite/Screenshot2026-07-21023131.png)
-
-## Content
+## Contents
 
 1. [IAM Configuration](5.2.1-iam/)
-2. [Amazon Cognito Setup](5.2.2-cognito/)
+2. [Amazon Cognito Configuration](5.2.2-cognito/)

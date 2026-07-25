@@ -1,27 +1,27 @@
 ---
-title: "Set up API Gateway and WebSocket"
+title: "Setup API Gateway and WebSocket"
 date: 2024-01-01
 weight: 6
 chapter: false
 pre: " <b> 5.6. </b> "
 ---
 
-In this section, you will configure **Amazon API Gateway** to expose the backend services of the application. API Gateway acts as the entry point between the frontend and the AWS Lambda functions, enabling secure and scalable communication through HTTP APIs.
+In this section, you will configure **Amazon API Gateway** to expose the application's backend services. API Gateway acts as the entry point for requests from the frontend and forwards them to AWS Lambda functions, allowing the system to operate on a secure and scalable serverless model.
 
-You will also configure the API so that it can communicate with the frontend application deployed on AWS Amplify. Proper routing, Lambda integrations, deployment stages, and CORS settings ensure that requests from users are processed correctly.
+You will also configure the API to communicate with the frontend application deployed on AWS Amplify. Setting up Routes, integrating Lambda, creating Stages, and configuring CORS will ensure user requests are processed accurately.
 
-By the end of this section, the application will have a fully functional HTTP API that is ready to integrate with the frontend and backend services.
+After completing this section, the system will have a fully functional **HTTP API**, ready to connect the frontend and backend.
 
 ## Objectives
 
 - Understand the role of Amazon API Gateway in the system architecture.
-- Learn the basic concepts of HTTP APIs.
-- Configure API routes and Lambda integrations.
-- Configure CORS to allow requests from the frontend.
-- Deploy the API and verify its availability.
+- Grasp the basic concepts of HTTP APIs.
+- Configure Routes and integrate with AWS Lambda.
+- Configure CORS so the frontend can access the API.
+- Deploy the API and verify the results.
 
-## Content
+## Contents
 
-1. **Introduction** – Learn about Amazon API Gateway and its role in the project architecture.
+1. **Introduction** – Learn about Amazon API Gateway and its role in the project's architecture.
 
-2. **Set up API Gateway and WebSocket** – Create and configure the HTTP API, integrate Lambda functions, configure CORS, create deployment stages, and deploy the API.
+2. **Setup API Gateway and WebSocket** – Create and configure the HTTP API, integrate with AWS Lambda, configure CORS, create Stages, and deploy the API.

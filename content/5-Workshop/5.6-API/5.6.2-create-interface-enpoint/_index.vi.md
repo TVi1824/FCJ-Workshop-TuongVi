@@ -50,6 +50,10 @@ Khi client gửi request đến Route, API Gateway sẽ tự động gọi Lambd
 
 ![Attach Lambda Integration](/images/5-Workshop/5.4-API/api_gateway3.png)
 
+![Attach Lambda Integration](/images/5-Workshop/5.4-API/api_gateway3.1.png)
+
+![Attach Lambda Integration](/images/5-Workshop/5.4-API/api_gateway3.2.png)
+
 ---
 
 ## Bước 4. Tạo Stage
@@ -73,6 +77,8 @@ Trước khi tạo API, hãy kiểm tra lại toàn bộ cấu hình, bao gồm 
 Nếu mọi thông tin đều chính xác, chọn **Create**.
 
 ![Review Configuration](/images/5-Workshop/5.4-API/api_gateway5.png)
+
+![Review Configuration](/images/5-Workshop/5.4-API/api_gateway5.1.png)
 
 ---
 

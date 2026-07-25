@@ -50,6 +50,10 @@ Whenever a client sends a request to the route, API Gateway automatically invoke
 
 ![Attach Lambda Integration](/images/5-Workshop/5.4-API/api_gateway3.png)
 
+![Attach Lambda Integration](/images/5-Workshop/5.4-API/api_gateway3.1.png)
+
+![Attach Lambda Integration](/images/5-Workshop/5.4-API/api_gateway3.2.png)
+
 ---
 
 ## Step 4. Create a Stage
@@ -73,6 +77,8 @@ Before creating the API, review all configuration settings, including the routes
 If everything is correct, choose **Create**.
 
 ![Review Configuration](/images/5-Workshop/5.4-API/api_gateway5.png)
+
+![Review Configuration](/images/5-Workshop/5.4-API/api_gateway5.1.png)
 
 ---
 

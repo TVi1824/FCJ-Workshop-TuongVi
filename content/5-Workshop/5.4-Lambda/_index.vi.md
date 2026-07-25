@@ -103,7 +103,7 @@ Nếu màn hình xuất hiện trạng thái **succeeded** (ví dụ với `stat
 ---
 ## II. CẤU HÌNH LAMBDA FUNCTION
 
-### 1. Cấu hình Lambda HTTP API
+### 1. Cấu hình các hàm Lambda HTTP API
 
 Tiếp theo, chúng ta sẽ thiết lập hàm Lambda chuyên xử lý các yêu cầu HTTP API (RESTful) từ người chơi, đảm nhận các chức năng nền tảng như quản lý Deck, tra cứu Leaderboard, và Rank.
 
@@ -133,11 +133,11 @@ Sau khi hàm `chrono-http-backend` được tạo thành công, tiến hành tri
 
 ---
 
-## 2. Cấu hình Lambda WebSocket API
+## 2. Cấu hình các hàm Lambda WebSocket API
 
 Trong phần này, chúng ta sẽ đi sâu vào cấu hình chi tiết cho từng hàm Lambda chịu trách nhiệm xử lý các luồng sự kiện thời gian thực (real-time) qua WebSocket. 
 
-#### Hàm Lambda: connectHandle
+#### Hàm Lambda: connectHandler
 **Vai trò:** Xử lý ghi nhận thiết bị người chơi khi kết nối WebSocket ban đầu được thiết lập, lưu trữ thông tin nhận diện người dùng vào hệ thống.
 - **Bước 1: Khởi tạo hàm:** Tạo hàm Lambda mới với tên `ConnectHandler`. Gán quyền thực thi bằng role `Chrono-lambda-execution-role`.
 - **Bước 2: Triển khai mã nguồn:** Tại màn hình chi tiết, chọn tab **Code**, nhấn **Upload from > .zip file** và tải lên file mã nguồn xử lý kết nối gốc.
@@ -146,12 +146,16 @@ Trong phần này, chúng ta sẽ đi sâu vào cấu hình chi tiết cho từn
 ![Tạo mã nguồn connectHandle](/images/5-Workshop/3.%20Lambda%20websocket/connectHandle/Screenshot%202026-07-21%20024153.png)
 ![Thiết lập trigger connectHandle](/images/5-Workshop/3.%20Lambda%20websocket/connectHandle/Screenshot%202026-07-25%20170040.png)
 
+---
+
 #### Hàm Lambda: disconnectHandler
 **Vai trò:** Dọn dẹp dữ liệu kết nối đã cũ, tự động xóa `connectionId` khỏi cơ sở dữ liệu khi người chơi thoát game hoặc mất tín hiệu rớt mạng.
 - **Bước 1: Tạo hàm và cấu hình Code:** Khởi tạo hàm `DisconnectHandler` và upload mã nguồn `.zip` tương ứng.
 - **Bước 2: Cấu hình Route ngắt kết nối:** Tương tự hàm connect, quay lại API Gateway và trỏ route `$disconnect` vào hàm `DisconnectHandler` này để hệ thống AWS tự động gọi khi mất kết nối.
 
 ![Cấu hình disconnectHandler](/images/5-Workshop/3.%20Lambda%20websocket/disconnectHandler/1.png)
+
+---
 
 #### Hàm Lambda: startMatch
 **Vai trò:** Được kích hoạt khi hệ thống Matchmaking (tìm trận) đã gom đủ số lượng người chơi. Hàm chịu trách nhiệm chia bài ban đầu, thiết lập HP và thông báo bắt đầu trận đấu.
@@ -161,6 +165,8 @@ Trong phần này, chúng ta sẽ đi sâu vào cấu hình chi tiết cho từn
 
 ![Cấu hình startMatch](/images/5-Workshop/3.%20Lambda%20websocket/startMatch/Screenshot%202026-07-25%20171353.png)
 
+---
+
 #### Hàm Lambda: processGameEngine
 **Vai trò:** Đây là bộ não (Core Engine) phân xử mọi logic mỗi khi người chơi đánh một lá bài, thi triển kỹ năng hoặc kết thúc lượt.
 - **Bước 1: Upload mã nguồn:** Do dung lượng logic Game Engine lớn, cần upload file `.zip` chứa toàn bộ tập luật (ruleset) của game.
@@ -168,6 +174,8 @@ Trong phần này, chúng ta sẽ đi sâu vào cấu hình chi tiết cho từn
 - **Bước 3: Cấp quyền truy cập DynamoDB:** Xác minh lại IAM Role của hàm để đảm bảo nó có đủ quyền `UpdateItem` và `GetItem` để liên tục thay đổi trạng thái ván đấu.
 
 ![Cấu hình processGameEngine](/images/5-Workshop/3.%20Lambda%20websocket/processGameEngine/1.png)
+
+---
 
 #### Hàm Lambda: handleTimeout
 **Vai trò:** Nhận nhiệm vụ đếm ngược, tự động bỏ qua (skip) lượt của người chơi nếu họ không có bất kỳ hành động nào trong khung thời gian quy định.
@@ -181,12 +189,16 @@ Trong phần này, chúng ta sẽ đi sâu vào cấu hình chi tiết cho từn
 ![Tạo test event handleTimeout](/images/5-Workshop/3.%20Lambda%20websocket/handleTimeout/3.%20Test%20event.png)
 ![Kết quả test handleTimeout](/images/5-Workshop/3.%20Lambda%20websocket/handleTimeout/4.%20Test%20result.png)
 
+---
+
 #### Hàm Lambda: cancelMatch
 **Vai trò:** Bắt tín hiệu từ người chơi khi họ chủ động nhấn nút "Hủy tìm trận", gỡ bỏ thông tin của họ khỏi hàng đợi chờ đấu.
 - **Bước 1: Upload Code:** Khởi tạo hàm và tải lên đoạn code xóa Record trong bản Matchmaking của DynamoDB.
 - **Bước 2: Map Route API Gateway:** Tạo route WebSocket riêng (ví dụ `$cancelMatch`) và trỏ vào hàm này.
 
 ![Cấu hình cancelMatch](/images/5-Workshop/3.%20Lambda%20websocket/cancelMatch/1.png)
+
+---
 
 #### Hàm Lambda: endMatch
 **Vai trò:** Tính toán kết quả cuối cùng (thắng/thua), cộng trừ Elo/Rank và đóng luồng trận đấu khi máu (HP) của một bên về 0.
@@ -195,20 +207,31 @@ Trong phần này, chúng ta sẽ đi sâu vào cấu hình chi tiết cho từn
 
 ![Cấu hình endMatch](/images/5-Workshop/3.%20Lambda%20websocket/endMatch/1.png)
 
-#### Hàm Lambda: rebuildLeaderBoardRanks
-**Vai trò:** Hàm Cron Job chạy ngầm định kỳ, tổng hợp toàn bộ điểm số của người chơi và sắp xếp lại bảng xếp hạng (Global Leaderboard).
-- **Bước 1: Cập nhật chỉ mục (Index) Database:** Truy cập giao diện bảng DynamoDB, chọn **Create index**. Cấu hình GSI (Global Secondary Index) với Partition Key và Sort Key phù hợp để query điểm xếp hạng tốc độ cao. Chờ đến khi Status hiển thị Active.
-- **Bước 2: Triển khai hàm:** Upload mã nguồn `rebuildLeaderboardRanks.zip`.
-- **Bước 3: Thiết lập EventBridge Rule:** Mở bảng điều khiển Amazon EventBridge. Chọn **Create rule**. Đặt tên rule là `DailyLeaderboardUpdate`.
-- **Bước 4: Cấu hình lịch trình (Schedule):** Chọn định dạng Cron expression để quy định chu kỳ chạy tự động (ví dụ: `cron(0 0 * * ? *)` chạy mỗi ngày).
-- **Bước 5: Gắn Target:** Thiết lập Target của rule này là dịch vụ AWS Lambda và chỉ định chính xác tên hàm `rebuildLeaderBoardRanks`.
+---
 
-![Cập nhật DB Index 1](/images/5-Workshop/3.%20Lambda%20websocket/rebuildLeaderBoardRanks/update%20index%20DB/Screenshot%202026-07-24%20011616.png)
-![Cập nhật DB Index 2](/images/5-Workshop/3.%20Lambda%20websocket/rebuildLeaderBoardRanks/update%20index%20DB/Screenshot%202026-07-24%20011625.png)
-![Cập nhật DB Index 3](/images/5-Workshop/3.%20Lambda%20websocket/rebuildLeaderBoardRanks/update%20index%20DB/Screenshot%202026-07-24%20011636.png)
-![Setup EventBridge 1](/images/5-Workshop/3.%20Lambda%20websocket/rebuildLeaderBoardRanks/setup%20eventBridge%20for%20lambda%20rebuildLeaderboardRanks/Screenshot%202026-07-24%20014857.png)
-![Setup EventBridge 2](/images/5-Workshop/3.%20Lambda%20websocket/rebuildLeaderBoardRanks/setup%20eventBridge%20for%20lambda%20rebuildLeaderboardRanks/Screenshot%202026-07-24%20014949.png)
-![Setup EventBridge 3](/images/5-Workshop/3.%20Lambda%20websocket/rebuildLeaderBoardRanks/setup%20eventBridge%20for%20lambda%20rebuildLeaderboardRanks/Screenshot%202026-07-24%20015016.png)
-![Setup EventBridge 4](/images/5-Workshop/3.%20Lambda%20websocket/rebuildLeaderBoardRanks/setup%20eventBridge%20for%20lambda%20rebuildLeaderboardRanks/Screenshot%202026-07-24%20015039.png)
-![Setup EventBridge 5](/images/5-Workshop/3.%20Lambda%20websocket/rebuildLeaderBoardRanks/setup%20eventBridge%20for%20lambda%20rebuildLeaderboardRanks/Screenshot%202026-07-24%20015045.png)
-![Setup EventBridge 6](/images/5-Workshop/3.%20Lambda%20websocket/rebuildLeaderBoardRanks/setup%20eventBridge%20for%20lambda%20rebuildLeaderboardRanks/Screenshot%202026-07-24%20015052.png)
+### 3. Cấu hình các hàm Lambda Worker
+
+Bên cạnh các hàm xử lý API trực tiếp, hệ thống Chrono Genesis Game còn sử dụng các Lambda Worker chạy ngầm tĩnh lặng trong hệ thống nền (Background Workers). Chúng đóng vai trò xử lý các tác vụ tiêu tốn nhiều thời gian hoặc cần chạy định kỳ để giảm tải cho game engine chính.
+
+#### Hàm Lambda: postMatchWorker
+**Vai trò:** Nhận nhiệm vụ xử lý hậu kỳ (Post-match) ngay sau khi một trận đấu kết thúc. Worker này sẽ tính toán lại điểm số (Elo/Rank), cập nhật lịch sử đấu, và trao phần thưởng cho người chiến thắng mà không làm tắc nghẽn luồng xử lý thời gian thực.
+- **Bước 1: Khởi tạo hàm Worker:** Truy cập giao diện AWS Lambda, nhấn **Create function**. Đặt tên hàm là `PostMatchWorker`. Thiết lập Runtime thành Node.js và gán quyền thực thi qua role `Chrono-lambda-execution-role`. Sau đó, tiến hành upload mã nguồn `.zip`.
+- **Bước 2: Thiết lập SQS Trigger:** Chuyển đến tab **Configuration > Triggers**. Chọn **Add trigger** và cấu hình nguồn kích hoạt là **SQS**. Chỉ định hàng đợi (Queue) chứa kết quả trận đấu (ví dụ: `Chrono-PostMatch-Queue`) để mỗi khi hàm `endMatch` bắn tin nhắn vào đây, worker sẽ tự động thức dậy.
+- **Bước 3: Cấu hình Test Event:** Nhấn vào tab **Test**, chọn **Configure test event**. Đặt tên event là `PostMatchTest`. Tạo một đoạn JSON giả lập định dạng tin nhắn chuẩn của SQS, trong đó phần `body` chứa ID của trận đấu vừa kết thúc và thông tin người thắng/thua.
+- **Bước 4: Kiểm tra kết quả thực thi:** Nhấn **Test** và quan sát khung **Execution result**. Trạng thái màu xanh `Succeeded` báo hiệu Worker đã đọc thành công tin nhắn SQS, xử lý dữ liệu và cập nhật chuẩn xác vào DynamoDB.
+
+![Tạo hàm postMatchWorker](/images/5-Workshop/Lambda%20worker/postMatchWorker/1.png)
+![Thiết lập trigger SQS](/images/5-Workshop/Lambda%20worker/postMatchWorker/2.png)
+![Cấu hình Test Event](/images/5-Workshop/Lambda%20worker/postMatchWorker/3.%20Test.png)
+![Kiểm tra kết quả](/images/5-Workshop/Lambda%20worker/postMatchWorker/4.%20Test%20result.png)
+
+---
+
+#### Hàm Lambda: rebuildLeaderboardRank
+**Vai trò:** Là một Cron Job chuyên dụng, chịu trách nhiệm quét toàn bộ điểm số của tất cả người chơi và sắp xếp lại bảng xếp hạng (Leaderboard) theo chu kỳ định kỳ.
+- **Bước 1: Khởi tạo hàm Cron:** Tương tự các hàm khác, nhấn **Create function** với tên `RebuildLeaderboardRank`, chọn Runtime Node.js, thiết lập IAM Role tương ứng và upload mã nguồn `.zip`.
+- **Bước 2: Cấu hình Trigger EventBridge:** Tại tab **Configuration > Triggers**, nhấn **Add trigger** nhưng lần này chọn dịch vụ **EventBridge (CloudWatch Events)**.
+- **Bước 3: Thiết lập lịch trình (Schedule):** Tạo một Rule mới trong EventBridge. Cấu hình trường **Schedule expression** (ví dụ sử dụng cron `cron(0 0 * * ? *)`) để hệ thống tự động gọi hàm này vào đúng 12 giờ đêm mỗi ngày, đảm bảo bảng xếp hạng luôn được làm mới một cách tự động.
+
+![Tạo hàm rebuildLeaderboardRank](/images/5-Workshop/Lambda%20worker/rebuildLeaderboardRank/1.png)
+![Cấu hình EventBridge](/images/5-Workshop/Lambda%20worker/rebuildLeaderboardRank/2.png)

@@ -27,10 +27,11 @@ We will leverage and combine the following core AWS services to build a complete
 
 #### Contents
 
-1. [Workshop Overview](5.1-Workshop-overview/)
+1. [Project Overview & Architecture](5.1-Workshop-overview/)
 2. [Prerequisites](5.2-Prerequiste/)
-3. [Create Amazon DynamoDB Database](5.3-DynamoDB)
-4. [Set Up Authentication & API Gateway WebSocket](5.4-API)
-5. [Configure Business Logic Compute (AWS Lambda Functions & SQS)](5.5-LAMBDA-SQS)
-6. [Deploy Frontend Web Game with AWS Amplify Hosting](5.6-Deploy)
-7. [Clean Up Resources](5.7-Cleanup/)
+3. [Initialize and Configure DynamoDB](5.3-DynamoDB/)
+4. [Configure business logic computation for AWS Lambda functions](5.4-Lambda/)
+5. [Setting Up SQS & EventBridge](5.5-SQS-EventBridge/)
+6. [Set up API Gateway and WebSocket](5.6-API/)
+7. [Deploy the System](5.7-Deploy/)
+8. [Cleanup Resources](5.8-Cleanup/)

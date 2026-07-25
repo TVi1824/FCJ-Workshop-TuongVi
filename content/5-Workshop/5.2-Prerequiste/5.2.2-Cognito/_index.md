@@ -1,7 +1,7 @@
 ---
 title: "Configure Amazon Cognito"
 date: 2024-01-01
-weight: 3
+weight: 22
 chapter: false
 pre: " <b> 5.2.2 </b> "
 ---

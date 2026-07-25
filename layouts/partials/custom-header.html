@@ -1,0 +1,198 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  #particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  body {
+    font-family: 'Inter', 'Amazon Ember', 'Work Sans', sans-serif !important;
+    position: relative;
+  }
+
+  #sidebar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 1000 !important;
+    backdrop-filter: blur(2px);
+  }
+
+  #body {
+    display: flex;
+    justify-content: center;
+  }
+
+  #body .padding {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  #body-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  #body #top-bar {
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .fcj-will-animate {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+
+  .fcj-will-animate.fcj-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fcj-will-animate {
+    animation: fcj-fallback-show 0s 1.5s forwards;
+  }
+
+  @keyframes fcj-fallback-show {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(72, 129, 205, 0.5);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(89, 154, 241, 0.8);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  #body-inner>h1:first-of-type,
+  #body-inner h1 {
+    text-align: center;
+    font-weight: 700 !important;
+    display: block;
+    position: relative;
+    letter-spacing: 0.03em;
+  }
+
+  /* Gradient underline căn giữa dưới h1 */
+  #body-inner h1::after {
+    content: '';
+    display: block;
+    margin: 8px auto 0;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #4881cd, #599af1, transparent);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+
+  #body-inner h1:hover::after {
+    width: 200px;
+  }
+
+  #chapter h1,
+  #chapter h2,
+  #chapter h3 {
+    text-align: center;
+    font-weight: 700 !important;
+  }
+
+  pre {
+    border-left: 3px solid #4881cd !important;
+    border-radius: 0 6px 6px 0 !important;
+  }
+
+  #body-inner img {
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 100%;
+  }
+
+  #body-inner img:hover {
+    transform: scale(1.01);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.22);
+  }
+
+  #body-inner table {
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  #body-inner table th {
+    background: var(--MENU-HEADER-BG-color);
+    color: #fff;
+    padding: 12px 16px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+
+  #body-inner table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(72, 129, 205, 0.1);
+    transition: background 0.15s ease;
+  }
+
+  #body-inner table tr:hover td {
+    background: rgba(72, 129, 205, 0.05);
+  }
+
+  #body-inner blockquote {
+    border-left: 4px solid #4881cd;
+    background: rgba(72, 129, 205, 0.06);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 20px;
+    margin: 16px 0;
+    font-style: italic;
+  }
+
+  #navigation a.nav-prev,
+  #navigation a.nav-next {
+    transition: transform 0.2s ease, opacity 0.2s ease !important;
+  }
+
+  #navigation a.nav-prev:hover {
+    transform: translateX(-4px);
+  }
+
+  #navigation a.nav-next:hover {
+    transform: translateX(4px);
+  }
+
+  #chapter {
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+  }
+</style>

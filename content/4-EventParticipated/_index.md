@@ -38,3 +38,14 @@ During my internship, I participated in 3 events. Each event was a memorable exp
 &emsp;**Location:** Floor 26, Bitexco Building, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City
 
 &emsp;**Role in the event:** Attendee 
+
+
+
+### [Event 4](4.4-Event4/)
+&emsp;**Event Name:** FCAJ - Agentic AI Build Week
+
+&emsp;**Time:** 09:00 on 25/07/2026
+
+&emsp;**Location:** Floor 26, Bitexco Building, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City
+
+&emsp;**Role in the event:** Attendee 

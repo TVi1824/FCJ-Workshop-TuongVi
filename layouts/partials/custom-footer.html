@@ -1,24 +1,120 @@
 <script>
   (function (i, s, o, g, r, a, m) {
     i["GoogleAnalyticsObject"] = r;
-    ((i[r] =
-      i[r] ||
-      function () {
-        (i[r].q = i[r].q || []).push(arguments);
-      }),
-      (i[r].l = 1 * new Date()));
+    ((i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments); }), (i[r].l = 1 * new Date()));
     ((a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]));
-    a.async = 1;
-    a.src = g;
-    m.parentNode.insertBefore(a, m);
-  })(
-    window,
-    document,
-    "script",
-    "https://www.google-analytics.com/analytics.js",
-    "ga",
-  );
-
+    a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+  })(window, document, "script", "https://www.google-analytics.com/analytics.js", "ga");
   ga("create", "UA-158079754-2", "auto");
   ga("send", "pageview");
+</script>
+
+<div id="particles-js"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<script>
+  if (typeof particlesJS !== 'undefined') {
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 55, density: { enable: true, value_area: 900 } },
+        color: { value: ["#4881cd", "#599af1", "#778ba5", "#fd9827"] },
+        shape: { type: "circle" },
+        opacity: {
+          value: 0.35, random: true,
+          anim: { enable: true, speed: 0.8, opacity_min: 0.1, sync: false }
+        },
+        size: { value: 3, random: true },
+        line_linked: {
+          enable: true, distance: 140,
+          color: "#4881cd", opacity: 0.18, width: 1
+        },
+        move: {
+          enable: true, speed: 1.2, direction: "none",
+          random: true, straight: false, out_mode: "out", bounce: false
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "grab" },
+          onclick: { enable: true, mode: "push" },
+          resize: true
+        },
+        modes: {
+          grab: { distance: 160, line_linked: { opacity: 0.5 } },
+          push: { particles_nb: 3 }
+        }
+      },
+      retina_detect: true
+    });
+  }
+
+  (function () {
+    if (!('IntersectionObserver' in window)) return;
+
+    var SELECTORS = [
+      '#body-inner > h1',
+      '#body-inner > h2',
+      '#body-inner > h3',
+      '#body-inner > h4',
+      '#body-inner > p',
+      '#body-inner > ul',
+      '#body-inner > ol',
+      '#body-inner > blockquote',
+      '#body-inner > table',
+      '#body-inner > pre',
+      '#body-inner > figure',
+      '#body-inner > .notices',
+      '#chapter > div',
+      '#chapter > h1',
+      '#chapter > h2',
+      '#chapter > p'
+    ];
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fcj-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.05,
+      rootMargin: '0px 0px -20px 0px'
+    });
+
+    function initAnimations() {
+      var allEls = [];
+
+      SELECTORS.forEach(function (selector) {
+        document.querySelectorAll(selector).forEach(function (el) {
+          if (el.innerHTML.trim() === '') return;
+          if (el.dataset.fcjAnimInit) return;
+          el.dataset.fcjAnimInit = '1';
+          allEls.push(el);
+        });
+      });
+
+      allEls.forEach(function (el, index) {
+        var delay = Math.min(index * 35, 280);
+        el.style.transitionDelay = delay + 'ms';
+      });
+
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          allEls.forEach(function (el) {
+            el.classList.add('fcj-will-animate');
+            observer.observe(el);
+          });
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAnimations);
+    } else {
+      initAnimations();
+    }
+  })();
 </script>

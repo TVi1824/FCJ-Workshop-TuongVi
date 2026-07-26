@@ -41,6 +41,10 @@ chapter: false
 8.  [Resources](8-Resources/)
 
 <style>
+  img {
+    max-width: 100%;
+    height: auto;
+  }
   .bouncing-cat {
     position: fixed;
     bottom: 20px;

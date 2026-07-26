@@ -61,5 +61,5 @@ chapter: false
   }
 </style>
 <div class="bouncing-cat">
-  <img src="/FCJ-Workshop-TuongVi/cat.gif" alt="Bouncing Cat" width="120">
+  <img src="cat.gif" alt="Bouncing Cat" width="120">
 </div>

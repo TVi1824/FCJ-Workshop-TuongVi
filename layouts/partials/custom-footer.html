@@ -118,3 +118,16 @@
     }
   })();
 </script>
+
+<button class="custom-hamburger" onclick="toggleSidebar()">
+  ☰
+</button>
+
+<script>
+  function toggleSidebar() {
+    var sidebar = document.getElementById('sidebar');
+    if (sidebar) {
+      sidebar.classList.toggle('mobile-open');
+    }
+  }
+</script>

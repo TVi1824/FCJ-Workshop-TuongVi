@@ -39,3 +39,27 @@ chapter: false
 6.  [Tự đánh giá](6-Self-evaluation/)
 7.  [Chia sẻ, đóng góp ý kiến](7-Feedback/)
 8. [Resources](8-Resources/)
+
+<style>
+  .bouncing-cat {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99999;
+    animation: boing 0.4s infinite alternate ease-in-out;
+  }
+  .bouncing-cat img {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  @keyframes boing {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-40px); }
+  }
+</style>
+<div class="bouncing-cat">
+  <img src="/FCJ-Workshop-TuongVi/cat.gif" alt="Bouncing Cat" width="120">
+</div>

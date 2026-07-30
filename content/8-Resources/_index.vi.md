@@ -14,8 +14,6 @@ _Truy cập [**Chrono Genesis TCG Game**](https://dev.d3oenyc702mfnb.amplifyapp.
 
 ### 2. Mã nguồn dự án
 
-[![TCG-AWS GitHub Repository](https://opengraph.githubassets.com/1/runeeyes584/TCG-AWS)](https://github.com/runeeyes584/TCG-AWS)
-
 _Truy cập [**GitHub Repository**](https://github.com/runeeyes584/TCG-AWS) để xem mã nguồn đầy đủ của dự án game serverless Chrono Genesis TCG._
 
 ---

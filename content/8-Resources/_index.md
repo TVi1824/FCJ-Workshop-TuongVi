@@ -14,8 +14,6 @@ _Visit the [**Chrono Genesis TCG Game**](https://dev.d3oenyc702mfnb.amplifyapp.c
 
 ### 2. Project Source Code
 
-[![TCG-AWS GitHub Repository](https://opengraph.githubassets.com/1/runeeyes584/TCG-AWS)](https://github.com/runeeyes584/TCG-AWS)
-
 _Visit the [**GitHub Repository**](https://github.com/runeeyes584/TCG-AWS) to view the complete source code for the Chrono Genesis TCG serverless game project._
 
 ---
